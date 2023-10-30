@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Blog</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        background-image: url('https://s1.picswalls.com/wallpapers/2014/06/22/robot-background_105339461_45.jpg'); /* Add the URL of the robot image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #f2f2f2; /* Set your preferred background color here */
+    }
+    .container {
+        margin-top: 30px;
+        background-color: rgba(54, 29, 122, 0.7); /* Set the background color of the container with some transparency */
+        padding: 20px;
+    }
+    .form-group {color:aliceblue
+
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 style="color: aliceblue;">Blog Creation</h1>
+    <hr>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">Image URL</label>
+        <input type="text" class="form-control" id="image" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="video">Video URL</label>
+        <input type="text" class="form-control" id="video" placeholder="">
+    </div>
+    <button onclick="createBlog()" class="btn btn-primary">Create Blog</button>
+    <div id="blogContainer" class="mt-5"></div>
+</div>
+<script>
+    function createBlog() {
+        var title = document.getElementById('title').value;
+        var content = document.getElementById('content').value;
+        var image = document.getElementById('image').value;
+        var video = document.getElementById('video').value;
+
+        var blogContainer = document.getElementById('blogContainer');
+        var blogElement = document.createElement('div');
+        blogElement.innerHTML = `
+            <div class="card">
+                ${image ? `<img class="card-img-top" src="${image}" alt="Card image cap">` : ''}
+                <div class="card-body">
+                    <h5 class="card-title">${title}</h5>
+                    <p class="card-text">${content}</p>
+                    ${video ? `<iframe width="100%" height="315" src="${video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>` : ''}
+                </div>
+            </div>
+            <hr>
+        `;
+        blogContainer.appendChild(blogElement);
+    }
+</script>
+</body>
+</html>
